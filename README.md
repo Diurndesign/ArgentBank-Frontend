@@ -16,24 +16,37 @@ npm run dev
 
 L'application est disponible sur `http://localhost:5173`.
 
+L'URL de l'API peut être changée en copiant `.env.example` en `.env` (variable `VITE_API_URL`).
+
+## Comptes de test
+
+| Email              | Mot de passe  |
+| ------------------ | ------------- |
+| `tony@stark.com`   | `password123` |
+| `steve@rogers.com` | `password456` |
+
 ## Routes
 
 | Route      | Page                         |
 | ---------- | ---------------------------- |
 | `/`        | Accueil                      |
 | `/login`   | Connexion                    |
-| `/profile` | Profil utilisateur (comptes) |
+| `/profile` | Profil utilisateur (accessible uniquement connecté) |
 | `*`        | Page 404                     |
 
 ## Structure
 
 ```
 src/
+├── app/          store Redux
 ├── assets/img/   images optimisées (WebP)
 ├── components/   composants réutilisables (Header, Footer, Hero, FeatureItem, Account…)
 ├── data/         données statiques (features, comptes)
+├── features/     slices Redux (auth : token, user : profil)
 ├── pages/        une page par route
+├── services/     appels à l'API
 ├── styles/       feuille de style principale
+├── utils/        stockage du token (localStorage / sessionStorage)
 ├── App.jsx       déclaration des routes (React Router)
 └── main.jsx      point d'entrée
 ```

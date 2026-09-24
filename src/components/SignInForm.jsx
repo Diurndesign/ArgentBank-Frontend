@@ -1,16 +1,28 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  clearAuthError,
+  loginUser,
+  selectAuthError,
+  selectAuthStatus,
+} from '../features/auth/authSlice.js'
 
 export default function SignInForm() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const status = useSelector(selectAuthStatus)
+  const error = useSelector(selectAuthError)
+  const isLoading = status === 'loading'
+
+  // On efface un éventuel message d'erreur quand on quitte la page
+  useEffect(() => () => dispatch(clearAuthError()), [dispatch])
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // Étape suivante : appel de l'API POST /user/login via Redux
-    navigate('/profile')
+    // La redirection vers /profile est gérée par la page SignIn une fois le token reçu
+    dispatch(loginUser({ email: username.trim(), password, rememberMe }))
   }
 
   return (
@@ -21,6 +33,7 @@ export default function SignInForm() {
           type="text"
           id="username"
           autoComplete="username"
+          required
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
@@ -31,6 +44,7 @@ export default function SignInForm() {
           type="password"
           id="password"
           autoComplete="current-password"
+          required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
@@ -44,8 +58,13 @@ export default function SignInForm() {
         />
         <label htmlFor="remember-me">Remember me</label>
       </div>
-      <button type="submit" className="sign-in-button">
-        Sign In
+      {error && (
+        <p className="sign-in-error" role="alert">
+          {error}
+        </p>
+      )}
+      <button type="submit" className="sign-in-button" disabled={isLoading}>
+        {isLoading ? 'Signing in…' : 'Sign In'}
       </button>
     </form>
   )
