@@ -1,16 +1,15 @@
 import { useState } from 'react'
-import EditNameForm from './EditNameForm.jsx'
+import EditUserInfoForm from './EditUserInfoForm.jsx'
 
-export default function UserHeader({ firstName, lastName }) {
+export default function UserHeader({ profile }) {
   const [isEditing, setIsEditing] = useState(false)
 
   if (isEditing) {
     return (
       <div className="header">
-        <h1>Welcome back</h1>
-        <EditNameForm
-          firstName={firstName}
-          lastName={lastName}
+        <h1>Edit user info</h1>
+        <EditUserInfoForm
+          profile={profile}
           onClose={() => setIsEditing(false)}
         />
       </div>
@@ -22,7 +21,7 @@ export default function UserHeader({ firstName, lastName }) {
       <h1>
         Welcome back
         <br />
-        {firstName} {lastName}!
+        {profile.firstName} {profile.lastName}!
       </h1>
       <button
         type="button"

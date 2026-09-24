@@ -7,7 +7,7 @@ export class ApiError extends Error {
   }
 }
 
-async function request(path, { token, body, method = 'POST' } = {}) {
+async function request(path, { token, body, method = 'GET' } = {}) {
   let response
   try {
     response = await fetch(`${API_URL}${path}`, {
@@ -31,15 +31,11 @@ async function request(path, { token, body, method = 'POST' } = {}) {
 
 // Réponse : { token }
 export const loginRequest = (email, password) =>
-  request('/user/login', { body: { email, password } })
+  request('/user/login', { method: 'POST', body: { email, password } })
 
-// Réponse : { email, firstName, lastName, id, createdAt, updatedAt }
+// Réponse : { email, firstName, lastName, userName, id, createdAt, updatedAt }
 export const getProfileRequest = (token) => request('/user/profile', { token })
 
-// Enregistre le nouveau nom en base. Réponse : le profil mis à jour
-export const updateProfileRequest = (token, { firstName, lastName }) =>
-  request('/user/profile', {
-    token,
-    method: 'PUT',
-    body: { firstName, lastName },
-  })
+// Enregistre le nouveau pseudo en base (seul champ modifiable). Réponse : le profil mis à jour
+export const updateProfileRequest = (token, userName) =>
+  request('/user/profile', { token, method: 'PUT', body: { userName } })

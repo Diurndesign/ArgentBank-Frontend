@@ -26,7 +26,7 @@ export default function Header() {
         {token ? (
           <>
             <Link className="main-nav-item" to="/profile">
-              <FaUserCircle aria-hidden="true" /> {profile?.firstName}
+              <FaUserCircle aria-hidden="true" /> {profile?.userName}
             </Link>
             <Link
               className="main-nav-item"

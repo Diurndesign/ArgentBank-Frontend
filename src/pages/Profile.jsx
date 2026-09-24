@@ -12,7 +12,7 @@ export default function Profile() {
 
   return (
     <main className="main bg-dark">
-      <UserHeader firstName={profile.firstName} lastName={profile.lastName} />
+      <UserHeader profile={profile} />
       <h2 className="sr-only">Accounts</h2>
       {accounts.map((account) => (
         <Account key={account.id} {...account} />

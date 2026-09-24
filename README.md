@@ -5,7 +5,7 @@ Application React (Vite) du site Argent Bank.
 ## Prérequis
 
 - Node.js 20.19+ (ou 22.12+)
-- Le back-end Argent Bank lancé sur `http://localhost:3001`
+- Le back-end Argent Bank ([ArgentBank-Backend](https://github.com/OpenClassrooms-Student-Center/ArgentBank-Backend)) lancé sur `http://localhost:3001`, base remplie avec `npm run populate-db`
 
 ## Installation et lancement
 
@@ -20,10 +20,10 @@ L'URL de l'API peut être changée en copiant `.env.example` en `.env` (variable
 
 ## Comptes de test
 
-| Email              | Mot de passe  |
-| ------------------ | ------------- |
-| `tony@stark.com`   | `password123` |
-| `steve@rogers.com` | `password456` |
+| Email              | Mot de passe  | Pseudo    |
+| ------------------ | ------------- | --------- |
+| `tony@stark.com`   | `password123` | `Iron`    |
+| `steve@rogers.com` | `password456` | `Captain` |
 
 ## Routes
 
@@ -31,7 +31,7 @@ L'URL de l'API peut être changée en copiant `.env.example` en `.env` (variable
 | ---------- | ---------------------------- |
 | `/`        | Accueil                      |
 | `/login`   | Connexion                    |
-| `/profile` | Profil utilisateur (accessible uniquement connecté) |
+| `/profile` | Profil utilisateur (accessible uniquement connecté), modification du pseudo |
 | `*`        | Page 404                     |
 
 ## Structure
