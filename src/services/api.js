@@ -7,11 +7,11 @@ export class ApiError extends Error {
   }
 }
 
-async function request(path, { token, body } = {}) {
+async function request(path, { token, body, method = 'POST' } = {}) {
   let response
   try {
     response = await fetch(`${API_URL}${path}`, {
-      method: 'POST',
+      method,
       headers: {
         'Content-Type': 'application/json',
         ...(token && { Authorization: `Bearer ${token}` }),
@@ -35,3 +35,11 @@ export const loginRequest = (email, password) =>
 
 // Réponse : { email, firstName, lastName, id, createdAt, updatedAt }
 export const getProfileRequest = (token) => request('/user/profile', { token })
+
+// Enregistre le nouveau nom en base. Réponse : le profil mis à jour
+export const updateProfileRequest = (token, { firstName, lastName }) =>
+  request('/user/profile', {
+    token,
+    method: 'PUT',
+    body: { firstName, lastName },
+  })

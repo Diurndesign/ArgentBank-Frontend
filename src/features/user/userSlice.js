@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getProfileRequest } from '../../services/api.js'
+import { getProfileRequest, updateProfileRequest } from '../../services/api.js'
 import { logout, logoutUser } from '../auth/authSlice.js'
 
 export const fetchUserProfile = createAsyncThunk(
@@ -16,6 +16,25 @@ export const fetchUserProfile = createAsyncThunk(
   {
     // Évite un double appel si une requête est déjà en cours
     condition: (_, { getState }) => getState().user.status !== 'loading',
+  },
+)
+
+export const updateUserProfile = createAsyncThunk(
+  'user/updateProfile',
+  async ({ firstName, lastName }, { getState, dispatch, rejectWithValue }) => {
+    try {
+      return await updateProfileRequest(getState().auth.token, {
+        firstName,
+        lastName,
+      })
+    } catch (error) {
+      if (error.status === 401) dispatch(logoutUser())
+      return rejectWithValue(
+        error.status === 0
+          ? error.message
+          : 'Unable to update your name. Please try again.',
+      )
+    }
   },
 )
 
@@ -43,6 +62,12 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.payload
+      })
+      // Le nom renvoyé par l'API remplace l'ancien dans le store :
+      // le Header et la page de profil se mettent à jour automatiquement
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        const { firstName, lastName, email } = action.payload
+        state.profile = { firstName, lastName, email }
       })
       // À la déconnexion, les informations de l'utilisateur disparaissent du store
       .addCase(logout, () => initialState)

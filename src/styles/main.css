@@ -329,3 +329,59 @@ body {
   opacity: 0.7;
   cursor: wait;
 }
+
+/* Formulaire de modification du nom (maquette edit-user-name) */
+.edit-name-form {
+  max-width: 480px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+}
+
+.edit-name-inputs,
+.edit-name-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.edit-name-inputs input {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+}
+
+.edit-name-buttons {
+  margin-top: 1rem;
+}
+
+.edit-name-buttons button {
+  width: 120px;
+  padding: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #00bc77;
+  background-color: #fff;
+  border: 2px solid #00bc77;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-name-buttons button:hover:not(:disabled) {
+  color: #fff;
+  background-color: #00bc77;
+}
+
+.edit-name-buttons button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.edit-name-error {
+  color: #ff8080;
+  font-weight: bold;
+  margin: 0.75rem 0 0;
+}
