@@ -310,6 +310,27 @@ body {
   vertical-align: -0.125em;
 }
 
+/* Un lien du menu ne se coupe jamais en deux lignes (ex. « Sign Out ») */
+.main-nav-item {
+  white-space: nowrap;
+}
+
+/* Petits écrans : logo et menu plus compacts pour tenir sur une ligne */
+@media (max-width: 480px) {
+  .main-nav {
+    padding: 5px 10px;
+  }
+
+  .main-nav-logo-image {
+    width: 140px;
+  }
+
+  .main-nav-item {
+    font-size: 0.9rem;
+    margin-right: 0.3rem;
+  }
+}
+
 .not-found {
   color: #fff;
   padding: 3rem 1rem;
