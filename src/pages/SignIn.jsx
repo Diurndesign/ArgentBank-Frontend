@@ -11,7 +11,7 @@ export default function SignIn() {
   if (token) return <Navigate to="/profile" replace />
 
   return (
-    <main className="main bg-dark">
+    <main className="main bg-light">
       <section className="sign-in-content">
         <FaUserCircle className="sign-in-icon" aria-hidden="true" />
         <h1>Sign In</h1>

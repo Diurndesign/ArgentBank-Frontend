@@ -17,8 +17,8 @@ body {
   flex: 1;
 }
 
-.bg-dark {
-  background-color: #12002b;
+.bg-light {
+  background-color: #fff;
 }
 
 .sr-only {
@@ -168,6 +168,8 @@ body {
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   width: 300px;
   margin: 0 auto;
   margin-top: 3rem;
@@ -332,7 +334,7 @@ body {
 }
 
 .not-found {
-  color: #fff;
+  color: #4a4a4a;
   padding: 3rem 1rem;
 }
 
@@ -349,6 +351,22 @@ body {
 .sign-in-button:disabled {
   opacity: 0.7;
   cursor: wait;
+}
+
+/* Page Profil : titre gris et cartes de compte sombres (maquette edit-user-name) */
+.profile {
+  padding-bottom: 2rem;
+}
+
+.profile .header {
+  color: #4a4a4a;
+}
+
+.profile .account {
+  border: none;
+  border-radius: 8px;
+  background-color: #3d3d3d;
+  color: #fff;
 }
 
 /* Formulaire de modification du pseudo (maquette edit-user-name) */
@@ -413,7 +431,7 @@ body {
 }
 
 .edit-user-error {
-  color: #ff8080;
+  color: #d62828;
   font-weight: bold;
   margin: 0.75rem 0 0;
 }

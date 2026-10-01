@@ -8,10 +8,10 @@ export default function Profile() {
   const profile = useSelector(selectUserProfile)
 
   // Profil en cours de chargement
-  if (!profile) return <main className="main bg-dark" />
+  if (!profile) return <main className="main bg-light profile" />
 
   return (
-    <main className="main bg-dark">
+    <main className="main bg-light profile">
       <UserHeader profile={profile} />
       <h2 className="sr-only">Accounts</h2>
       {accounts.map((account) => (
